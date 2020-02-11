@@ -62,6 +62,31 @@ frappe.ui.form.on('Data Import Beta', {
 				allowed_file_types: ['.csv', '.xls', '.xlsx']
 			}
 		};
+		console.log('asf asdf')
+		frm.refresh_timer = setInterval(() => {
+			console.log(frm.doc.name);
+			if (frm.doc.status !== 'Success') {
+				console.log(frm.doc.status);
+				console.log('refreshing...');
+				frm.refresh();
+			} else {
+				frm.events.stop_refresh_timer(frm);
+			}
+		}, 5000);
+
+		// $(document).on('form-unload', (e) => {
+
+		// })
+	},
+
+	stop_refresh_timer(frm) {
+		console.log('stopped refresh');
+		clearInterval(frm.refresh_timer);
+	},
+
+	destroy(frm) {
+		console.log('destroy')
+		frm.events.stop_refresh_timer(frm);
 	},
 
 	refresh(frm) {

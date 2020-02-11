@@ -113,7 +113,8 @@ class Exporter:
 		)
 
 		if fields:
-			return [name_field] + fields
+			return fields
+			# return [name_field] + fields
 		else:
 			return []
 

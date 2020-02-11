@@ -377,7 +377,9 @@ frappe.ui.form.Form = class FrappeForm {
 			this.initialize_new_doc();
 			$(document).trigger("form-load", [this]);
 			$(this.page.wrapper).on('hide',  function() {
-				$(document).trigger("form-unload", [me]);
+                console.log('form unload')
+                $(document).trigger("form-unload", [me]);
+                me.script_manager.trigger('destroy');
 			});
 		} else {
 			this.render_form(switched);
